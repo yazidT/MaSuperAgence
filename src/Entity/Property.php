@@ -5,6 +5,7 @@ namespace App\Entity;
 use App\Repository\PropertyRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\ORM\Query\Expr\Func;
 
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
@@ -173,6 +174,11 @@ class Property
     public function getPrice(): ?int
     {
         return $this->price;
+    }
+
+    public function getFormattedPrice ()
+    {
+        return number_format( $this->price, 0, '', ' ');
     }
 
     public function setPrice(int $price): self
