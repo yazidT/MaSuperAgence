@@ -6,6 +6,8 @@ use App\Repository\PropertyRepository;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Doctrine\ORM\Query\Expr\Func;
+use Cocur\Slugify\Slugify as Slug;
+
 
 /**
  * @ORM\Entity(repositoryClass=PropertyRepository::class)
@@ -104,6 +106,11 @@ class Property
         return $this->title;
     }
 
+    public function getSlug()
+    {
+        return (new Slug())->slugify($this->title);
+    }
+
     public function setTitle(string $title): self
     {
         $this->title = $title;
@@ -111,7 +118,7 @@ class Property
         return $this;
     }
 
-    public function getDescription(): ?string
+    public function getDescription(): ?string 
     {
         return $this->description;
     }
@@ -191,6 +198,11 @@ class Property
     public function getHeat(): ?int
     {
         return $this->heat;
+    }
+
+    public function getHeatType(): string
+    {
+        return self::HEAT[$this->heat];
     }
 
     public function setHeat(int $heat): self
