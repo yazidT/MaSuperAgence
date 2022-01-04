@@ -7,7 +7,6 @@
     <div class="container">
         <h1> Gérer les biens </h1>
         <div class="row flex">
-        
             <table>
                 <thead>
                     <tr>
@@ -27,6 +26,10 @@
                     </tr>
                 {% endfor %}
             </table>
+            
+            <div class="text-right">
+                <a href="{{  path('admin.property.new') }}" class="btn btn-primary"> Créer un nouveau bien </a>         
+            </div>
 
         </div>
     </div>
